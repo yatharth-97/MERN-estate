@@ -1,6 +1,9 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const dotenv = require('dotenv');
+import express from 'express';
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import userRouter from './routes/user.route.js';
+
+const app = express();
 dotenv.config();
 
 mongoose
@@ -12,8 +15,10 @@ mongoose
     console.log(err);
   });
 
-const app = express();
+//* routes
+app.use('/api/user', userRouter);
 
+//* server running
 app.listen(3000, () => {
   console.log(`Server is running on port 3000`);
 });
