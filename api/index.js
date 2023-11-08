@@ -3,9 +3,8 @@ import mongoose from 'mongoose';
 import userRouter from './routes/user.route.js';
 import authRouter from './routes/auth.route.js';
 import dotenv from 'dotenv';
+import cookieParser from 'cookie-parser';
 dotenv.config();
-
-const app = express();
 
 mongoose
   .connect(process.env.MONGO_URI)
@@ -16,8 +15,13 @@ mongoose
     console.log(err);
   });
 
+const app = express();
+
 // this will allow json as input of the server
 app.use(express.json());
+
+app.use(cookieParser());
+
 // routes
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
