@@ -30,7 +30,7 @@ const SignIn = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData), //taking formData from req.body and convert in to JSON
+        body: JSON.stringify(formData), //putting formData into req.body and convert in to JSON
       });
       const data = await response.json();
       console.log(data);
